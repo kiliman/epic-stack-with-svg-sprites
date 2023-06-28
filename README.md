@@ -59,18 +59,19 @@ To use the new icons, you will need to first import the sprite file and add it
 to your `links` export. I recommend setting `rel=preload` to ensure the icon
 files gets loaded immediately.
 
-Each sprite exports an `href` that is the URL of the generated sprite file. In
-addition, a React component is exported for every SVG file. It will be named the
-same as the filename in _TitleCase_.
+Each sprite exports an `href` that is the URL of the generated sprite file. By
+default the generator will create a default React component with a typed `icon`
+prop. You can add the argument `--components` to the generator to create a named
+React component for each icon. It will be named the same as the filename in
+_TitleCase_.
 
 ```ts
 import {
-  ArrowLeftOnRectangleIcon,
-  PencilSquareIcon,
-  UserIcon,
+  default as HeroIcons20Solid,
   href as icons20solid,
 } from '~/components/icons/heroicons/20/solid/index.tsx'
-import { href as icons24outline } from '~/components/icons/heroicons/24/outline/index.tsx'
+import { href as icons24outline }
+  from '~/components/icons/heroicons/24/outline/index.tsx'
 
 export const links: LinksFunction = () => {
   return [
@@ -84,10 +85,16 @@ export const links: LinksFunction = () => {
 
 ## Styling the Icon
 
-You can use the `className` prop to style your icons. You can specify the
-height, width, and color.
+If you use the default `Icon` export, you will need to provide the `icon` name.
+This prop is typed so you can't accidentally select an invalid icon.
+
+To style your icons, use the `className` prop to style your icons. You can
+specify the height, width, and color.
 
 ```ts
+<HeroIcons20Solid icon="user" className="h-6 w-6 text-foreground/60" />
+
+// if you use named component exports
 <UserIcon className="h-6 w-6 text-foreground/60" />
 ```
 

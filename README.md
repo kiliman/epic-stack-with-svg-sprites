@@ -1,6 +1,8 @@
 # Epic Stack Example with SVG Sprites
 
-This example shows how you can use SVG sprites to manage your icons.
+This example shows how you can use SVG sprites to manage your icons. This is
+based on recommendations from the article
+[The "best" way to manage icons in React.js](https://benadam.me/thoughts/react-svg-sprites/)
 
 We will use the [`rmx-cli`](https://github.com/kiliman/rmx-cli) package to
 automate the sprite generation.
@@ -88,3 +90,14 @@ height, width, and color.
 ```ts
 <UserIcon className="h-6 w-6 text-foreground/60" />
 ```
+
+## Example
+
+The example shows icons used in the User Dropdown Menu as well as the theme
+picker:
+
+<img width="237" alt="image" src="https://github.com/epicweb-dev/epic-stack/assets/47168/940163d9-665f-4d1c-947a-12174a57a8dd">
+
+<img width="121" alt="image" src="https://github.com/epicweb-dev/epic-stack/assets/47168/3defa740-6dd3-4a34-96c4-958404e6c865">
+
+<img width="113" alt="image" src="https://github.com/epicweb-dev/epic-stack/assets/47168/40f0a8ee-05cc-446b-a5a7-50eeeab56bec">

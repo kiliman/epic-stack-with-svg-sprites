@@ -19,7 +19,16 @@ import {
 	useSubmit,
 } from '@remix-run/react'
 import { withSentry } from '@sentry/remix'
-import { ThemeSwitch, useTheme } from './routes/resources+/theme/index.tsx'
+import { useRef } from 'react'
+import { Button } from './components/ui/button.tsx'
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuPortal,
+	DropdownMenuTrigger,
+} from './components/ui/dropdown-menu.tsx'
+import { useTheme } from './routes/resources+/theme/index.tsx'
 import { getTheme } from './routes/resources+/theme/theme-session.server.ts'
 import fontStylestylesheetUrl from './styles/font.css'
 import tailwindStylesheetUrl from './styles/tailwind.css'
@@ -32,15 +41,6 @@ import { getUserImgSrc } from './utils/misc.ts'
 import { useNonce } from './utils/nonce-provider.ts'
 import { makeTimings, time } from './utils/timing.server.ts'
 import { useOptionalUser, useUser } from './utils/user.ts'
-import { useRef } from 'react'
-import { Button } from './components/ui/button.tsx'
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuPortal,
-	DropdownMenuTrigger,
-} from './components/ui/dropdown-menu.tsx'
 
 export const links: LinksFunction = () => {
 	return [
@@ -145,7 +145,7 @@ function App() {
 				<Links />
 			</head>
 			<body className="flex h-full flex-col justify-between bg-background text-foreground">
-				<header className="container mx-auto py-6">
+				{/* <header className="container mx-auto py-6">
 					<nav className="flex justify-between">
 						<Link to="/">
 							<div className="font-light">epic</div>
@@ -161,20 +161,20 @@ function App() {
 							)}
 						</div>
 					</nav>
-				</header>
+				</header> */}
 
 				<div className="flex-1">
 					<Outlet />
 				</div>
 
-				<div className="container mx-auto flex justify-between">
+				{/* <div className="container mx-auto flex justify-between">
 					<Link to="/">
 						<div className="font-light">epic</div>
 						<div className="font-bold">notes</div>
 					</Link>
 					<ThemeSwitch userPreference={data.requestInfo.session.theme} />
 				</div>
-				<div className="h-5" />
+				<div className="h-5" /> */}
 				<ScrollRestoration nonce={nonce} />
 				<Scripts nonce={nonce} />
 				<script

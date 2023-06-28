@@ -42,9 +42,7 @@ import {
 	DropdownMenuTrigger,
 } from './components/ui/dropdown-menu.tsx'
 import {
-	ArrowLeftOnRectangleIcon,
-	PencilSquareIcon,
-	UserIcon,
+	default as HeroIcons20Solid,
 	href as icons20solid,
 } from '~/components/icons/heroicons/20/solid/index.tsx'
 import { href as icons24outline } from '~/components/icons/heroicons/24/outline/index.tsx'
@@ -233,7 +231,10 @@ function UserDropdown() {
 							to={`/users/${user.username}`}
 							className="items-center gap-2"
 						>
-							<UserIcon className="h-6 w-6 text-foreground/60" />
+							<HeroIcons20Solid
+								icon="user"
+								className="h-6 w-6 text-foreground/60"
+							/>
 							<span>Profile</span>
 						</Link>
 					</DropdownMenuItem>
@@ -243,7 +244,10 @@ function UserDropdown() {
 							to={`/users/${user.username}/notes`}
 							className="items-center gap-2"
 						>
-							<PencilSquareIcon className="h-6 w-6 text-foreground/60" />
+							<HeroIcons20Solid
+								icon="pencil-square"
+								className="h-6 w-6 text-foreground/60"
+							/>
 							<span>Notes</span>
 						</Link>
 					</DropdownMenuItem>
@@ -257,7 +261,10 @@ function UserDropdown() {
 					>
 						<Form action="/logout" method="POST" ref={formRef}>
 							<button type="submit" className="inline-flex items-center gap-2">
-								<ArrowLeftOnRectangleIcon className="h-6 w-6 text-foreground/60" />
+								<HeroIcons20Solid
+									icon="arrow-left-on-rectangle"
+									className="h-6 w-6 text-foreground/60"
+								/>
 								<span>Logout</span>
 							</button>
 						</Form>

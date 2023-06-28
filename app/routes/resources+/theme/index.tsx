@@ -15,11 +15,7 @@ import {
 	setTheme,
 } from './theme-session.server.ts'
 
-import {
-	ComputerDesktopIcon,
-	MoonIcon,
-	SunIcon,
-} from '~/components/icons/heroicons/24/outline/index.tsx'
+import { default as HeroIcons24Outline } from '~/components/icons/heroicons/24/outline/index.tsx'
 
 const ROUTE_PATH = '/resources/theme'
 
@@ -91,19 +87,22 @@ export function ThemeSwitch({
 	const modeLabel = {
 		light: (
 			<>
-				<MoonIcon className="h-6 w-6 text-foreground" />{' '}
+				<HeroIcons24Outline icon="moon" className="h-6 w-6 text-foreground" />{' '}
 				<span className="sr-only">Light</span>
 			</>
 		),
 		dark: (
 			<>
-				<SunIcon className="h-6 w-6 text-foreground" />{' '}
+				<HeroIcons24Outline icon="sun" className="h-6 w-6 text-foreground" />{' '}
 				<span className="sr-only">Dark</span>
 			</>
 		),
 		system: (
 			<>
-				<ComputerDesktopIcon className="h-6 w-6 text-foreground" />{' '}
+				<HeroIcons24Outline
+					icon="computer-desktop"
+					className="h-6 w-6 text-foreground"
+				/>{' '}
 				<span className="sr-only">System</span>
 			</>
 		),

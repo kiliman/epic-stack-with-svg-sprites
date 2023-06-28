@@ -1,54 +1,90 @@
-<div align="center">
-  <h1 align="center"><a href="https://www.epicweb.dev/epic-stack">The Epic Stack 🚀</a></h1>
-  <strong align="center">
-    Ditch analysis paralysis and start shipping Epic Web apps.
-  </strong>
-  <p>
-    This is an opinionated project starter and reference that allows teams to
-    ship their ideas to production faster and on a more stable foundation based
-    on the experience of <a href="https://kentcdodds.com">Kent C. Dodds</a> and
-    <a href="https://github.com/epicweb-dev/epic-stack/graphs/contributors">contributors</a>.
-  </p>
-</div>
+# Epic Stack Example with SVG Sprites
 
-```sh
-npx create-remix@latest --typescript --install --template epicweb-dev/epic-stack
+This example shows how you can use SVG sprites to manage your icons.
+
+We will use the [`rmx-cli`](https://github.com/kiliman/rmx-cli) package to
+automate the sprite generation.
+
+## Install
+
+1. Install the `rmx-cli` package as a dev dependency
+
+```bash
+npm install -D rmx-cli
 ```
 
-[![The Epic Stack](https://github-production-user-asset-6210df.s3.amazonaws.com/1500684/246885449-1b00286c-aa3d-44b2-9ef2-04f694eb3592.png)](https://www.epicweb.dev/epic-stack)
+2. Add a script to _package.json_ to easily generate your sprites. This will
+   scan for SVG files in the _assets/svg/icons_ folder and generate the React
+   component and sprite file in _app/components/icons_
 
-[The Epic Stack](https://www.epicweb.dev/epic-stack)
+```json
+"scripts": {
+  "gen-svg-sprite": "rmx svg-sprite assets/svg/icons app/components/icons"
+}
+```
 
-<hr />
+3. Copy the required SVG files from your icon set. If you have multiple sets or
+   sizes or styles, make sure you separate them by folders. The tool will create
+   the same folder structure in the output.
 
-## Watch Kent's Introduction to The Epic Stack
+```
+assets
+└── svg
+    └── icons
+        └── heroicons
+            ├── 20
+            │   └── solid
+            │       ├── arrow-left-on-rectangle.svg
+            │       ├── pencil-square.svg
+            │       └── user.svg
+            └── 24
+                └── outline
+                    ├── computer-desktop.svg
+                    ├── moon.svg
+                    └── sun.svg
+```
 
-[![screenshot of a YouTube video](https://github-production-user-asset-6210df.s3.amazonaws.com/1500684/242088051-6beafa78-41c6-47e1-b999-08d3d3e5cb57.png)](https://www.youtube.com/watch?v=yMK5SVRASxM)
+4. Generate the sprite file using the npm script. You can regenerate the sprites
+   anytime you add new SVG files to your source folder.
 
-["The Epic Stack" by Kent C. Dodds at #RemixConf 2023 💿](https://www.youtube.com/watch?v=yMK5SVRASxM)
+```bash
+npm run gen-svg-sprite
+```
 
-## Docs
+## Usage
 
-[Read the docs](https://github.com/epicweb-dev/epic-stack/blob/main/docs)
-(please 🙏).
+To use the new icons, you will need to first import the sprite file and add it
+to your `links` export. I recommend setting `rel=preload` to ensure the icon
+files gets loaded immediately.
 
-## Support
+Each sprite exports an `href` that is the URL of the generated sprite file. In
+addition, a React component is exported for every SVG file. It will be named the
+same as the filename in _TitleCase_.
 
-- 🆘 Join the
-  [discussion on GitHub](https://github.com/epicweb-dev/epic-stack/discussions)
-  and the [KCD Community on Discord](https://kcd.im/discord).
-- 💡 Create an
-  [idea discussion](https://github.com/epicweb-dev/epic-stack/discussions/new?category=ideas)
-  for suggestions.
-- 🐛 Open a [GitHub issue](https://github.com/epicweb-dev/epic-stack/issues) to
-  report a bug.
+```ts
+import {
+  ArrowLeftOnRectangleIcon,
+  PencilSquareIcon,
+  UserIcon,
+  href as icons20solid,
+} from '~/components/icons/heroicons/20/solid/index.tsx'
+import { href as icons24outline } from '~/components/icons/heroicons/24/outline/index.tsx'
 
-## Branding
+export const links: LinksFunction = () => {
+  return [
+    // Preload sprite icons
+    { rel: 'preload', href: icons24outline, as: 'image' },
+    { rel: 'preload', href: icons20solid, as: 'image' },
+    ...
+  ]
+}
+```
 
-Want to talk about the Epic Stack in a blog post or talk? Great! Here are some
-assets you can use in your material:
-[EpicWeb.dev/brand](https://epicweb.dev/brand)
+## Styling the Icon
 
-## Thanks
+You can use the `className` prop to style your icons. You can specify the
+height, width, and color.
 
-You rock 🪨
+```ts
+<UserIcon className="h-6 w-6 text-foreground/60" />
+```

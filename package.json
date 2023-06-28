@@ -23,7 +23,8 @@
     "test:e2e:run": "cross-env CI=true playwright test",
     "test:e2e:install": "npx playwright install --with-deps chromium",
     "typecheck": "tsc",
-    "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run"
+    "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run",
+    "gen-svg-sprite": "rmx svg-sprite assets/svg/icons app/components/icons"
   },
   "eslintIgnore": [
     "/node_modules",
@@ -125,6 +126,7 @@
     "prettier-plugin-sql": "^0.14.0",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "remix-flat-routes": "^0.5.8",
+    "rmx-cli": "^0.4.4",
     "tsconfig-paths": "^4.2.0",
     "tsx": "^3.12.7",
     "typescript": "^5.1.3",

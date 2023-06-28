@@ -41,12 +41,22 @@ import {
 	DropdownMenuPortal,
 	DropdownMenuTrigger,
 } from './components/ui/dropdown-menu.tsx'
+import {
+	ArrowLeftOnRectangleIcon,
+	PencilSquareIcon,
+	UserIcon,
+	href as icons20solid,
+} from '~/components/icons/heroicons/20/solid/index.tsx'
+import { href as icons24outline } from '~/components/icons/heroicons/24/outline/index.tsx'
 
 export const links: LinksFunction = () => {
 	return [
 		// Preload CSS as a resource to avoid render blocking
 		{ rel: 'preload', href: fontStylestylesheetUrl, as: 'style' },
 		{ rel: 'preload', href: tailwindStylesheetUrl, as: 'style' },
+		// Preload sprite icons
+		{ rel: 'preload', href: icons24outline, as: 'image' },
+		{ rel: 'preload', href: icons20solid, as: 'image' },
 		cssBundleHref ? { rel: 'preload', href: cssBundleHref, as: 'style' } : null,
 		{ rel: 'mask-icon', href: '/favicons/mask-icon.svg' },
 		{
@@ -218,13 +228,23 @@ function UserDropdown() {
 			<DropdownMenuPortal>
 				<DropdownMenuContent sideOffset={8} align="start">
 					<DropdownMenuItem asChild>
-						<Link prefetch="intent" to={`/users/${user.username}`}>
-							Profile
+						<Link
+							prefetch="intent"
+							to={`/users/${user.username}`}
+							className="items-center gap-2"
+						>
+							<UserIcon className="h-6 w-6 text-foreground/60" />
+							<span>Profile</span>
 						</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem asChild>
-						<Link prefetch="intent" to={`/users/${user.username}/notes`}>
-							Notes
+						<Link
+							prefetch="intent"
+							to={`/users/${user.username}/notes`}
+							className="items-center gap-2"
+						>
+							<PencilSquareIcon className="h-6 w-6 text-foreground/60" />
+							<span>Notes</span>
 						</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem
@@ -236,7 +256,10 @@ function UserDropdown() {
 						}}
 					>
 						<Form action="/logout" method="POST" ref={formRef}>
-							<button type="submit">Logout</button>
+							<button type="submit" className="inline-flex items-center gap-2">
+								<ArrowLeftOnRectangleIcon className="h-6 w-6 text-foreground/60" />
+								<span>Logout</span>
+							</button>
 						</Form>
 					</DropdownMenuItem>
 				</DropdownMenuContent>

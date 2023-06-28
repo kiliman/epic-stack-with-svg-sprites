@@ -15,6 +15,12 @@ import {
 	setTheme,
 } from './theme-session.server.ts'
 
+import {
+	ComputerDesktopIcon,
+	MoonIcon,
+	SunIcon,
+} from '~/components/icons/heroicons/24/outline/index.tsx'
+
 const ROUTE_PATH = '/resources/theme'
 
 const ThemeFormSchema = z.object({
@@ -85,17 +91,20 @@ export function ThemeSwitch({
 	const modeLabel = {
 		light: (
 			<>
-				🔆 <span className="sr-only">Light</span>
+				<MoonIcon className="h-6 w-6 text-foreground" />{' '}
+				<span className="sr-only">Light</span>
 			</>
 		),
 		dark: (
 			<>
-				🌕 <span className="sr-only">Dark</span>
+				<SunIcon className="h-6 w-6 text-foreground" />{' '}
+				<span className="sr-only">Dark</span>
 			</>
 		),
 		system: (
 			<>
-				💻 <span className="sr-only">System</span>
+				<ComputerDesktopIcon className="h-6 w-6 text-foreground" />{' '}
+				<span className="sr-only">System</span>
 			</>
 		),
 	}

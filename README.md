@@ -1,5 +1,7 @@
 # Epic Stack Example with SVG Sprites
 
+**This feature is now [built-in with the Epic Stack](https://github.com/epicweb-dev/epic-stack/blob/main/docs/icons.md)**
+
 This example shows how you can use SVG sprites to manage your icons. This is
 based on recommendations from the article
 [The "best" way to manage icons in React.js](https://benadam.me/thoughts/react-svg-sprites/)
